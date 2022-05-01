@@ -2,11 +2,11 @@ import React from 'react';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 
-type Props = {
-  img?: string
-};
+// type Props = {
+//   img?: string
+// };
 
-const Background = ({ img = 'https://particles.js.org/images/background3.jpg' }: Props) => {
+const Background = ({ img = 'https://particles.js.org/images/background3.jpg' }) => {
   const particlesInit = async (main) => {
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -26,7 +26,7 @@ const Background = ({ img = 'https://particles.js.org/images/background3.jpg' }:
           "image": `url('${img}')`,
           "position": "50% 50%",
           "repeat": "no-repeat",
-          "size": "cover"
+          "size": "contain"
         },
         "backgroundMask": {
           "cover": {
@@ -38,7 +38,7 @@ const Background = ({ img = 'https://particles.js.org/images/background3.jpg' }:
               }
             }
           },
-          "enable": false
+          "enable": true
         },
         "fullScreen": {
           "zIndex": -1
@@ -110,7 +110,8 @@ const Background = ({ img = 'https://particles.js.org/images/background3.jpg' }:
               "left": "out",
               "right": "out",
               "top": "out"
-            }
+            },
+            "speed": 3
           },
           "number": {
             "density": {
