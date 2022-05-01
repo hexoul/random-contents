@@ -20,7 +20,7 @@ module.exports = (phase, { defaultConfig }) => {
     return {
         ...commonConfig,
         /* config options for all phases except development here */
-        basePath,
+        // basePath,
         env: {
             ...commonConfig.env,
         },
