@@ -1,15 +1,21 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { sampleUserData } from '../../../utils/sample-data'
+import { load } from 'cheerio';
 
-const handler = (_req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  if (!req.query.idx) {
+    res.status(500).json({ message: 'no ID' })
+    return
+  }
+
   try {
-    if (!Array.isArray(sampleUserData)) {
-      throw new Error('Cannot find user data')
-    }
-
-    res.status(200).json(sampleUserData)
+    const resp = await fetch(`https://seo.kinolights.com/title/${req.query.idx}`);
+    const html = await resp.text();
+    const $ = load(html);
+    const title = $(`h3[class='title-kr']`).text();
+    const poster = $(`img[alt='${title}']`).attr('src');
+    res.status(200).json({ title, poster })
   } catch (err: any) {
-    res.status(500).json({ statusCode: 500, message: err.message })
+    res.status(500).json({ message: err.message })
   }
 }
 
