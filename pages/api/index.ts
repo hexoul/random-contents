@@ -3,13 +3,13 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { load } from 'cheerio';
 
 const handler = async (req: VercelRequest, res: VercelResponse) => {
-  if (!req.query.idx) {
+  const idx = req.query.idx;
+  if (!idx) {
     res.status(500).json({ message: 'no ID' })
     return
   }
 
   try {
-    const idx = req.query.idx;
     const resp = await fetch(`https://seo.kinolights.com/title/${idx}`);
     const html = await resp.text();
     const $ = load(html);

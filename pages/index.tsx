@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import Background from '../components/Background';
 import Layout from '../components/Layout';
 import { Content } from '../interfaces';
-import { randomInt } from '../utils';
+import { fetchContent, randomInt } from '../utils';
 
 const IndexPage = () => {
   const [img, setImg] = useState<string>('https://particles.js.org/images/background3.jpg');
@@ -12,7 +12,8 @@ const IndexPage = () => {
 
   const pickContent = useCallback(async () => {
     const idx = randomInt(1, 105335);
-    const resp = await fetch(`api/contents?idx=${idx}`);
+
+    const resp = await fetch(`api?idx=${idx}`);
     if (resp.status !== 200) return null;
     const pick: Content = await resp.json();
     return pick;
