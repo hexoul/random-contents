@@ -1,12 +1,14 @@
 {
   "private": true,
+  "license": "UNLICENSED",
+  "homepage": "https://hexoul.github.io/random-contents",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "predeploy": "next build && next export && touch out/.nojekyll",
-    "deploy": "gh-pages -d out --dotfiles",
+    "deploy": "gh-pages -d out -t true --dotfiles",
     "type-check": "tsc"
   },
   "dependencies": {
