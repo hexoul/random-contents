@@ -6,7 +6,7 @@ type Props = {
   img?: string
 }
 
-const Background = ({ img }: Props) => {
+const Background = ({ img = 'https://particles.js.org/images/background3.jpg' }: Props) => {
   const particlesInit = async (main) => {
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -23,7 +23,7 @@ const Background = ({ img }: Props) => {
           "color": {
             "value": "#ffffff"
           },
-          "image": "url('https://particles.js.org/images/background3.jpg')",
+          "image": `url('${img}')`,
           "position": "50% 50%",
           "repeat": "no-repeat",
           "size": "cover"
