@@ -1,7 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+// import { NextApiRequest, NextApiResponse } from 'next';
 import { load } from 'cheerio';
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: VercelRequest, res: VercelResponse) => {
   if (!req.query.idx) {
     res.status(500).json({ message: 'no ID' })
     return

@@ -16,11 +16,9 @@ module.exports = (phase, { defaultConfig }) => {
         }
     }
 
-    const basePath = '/random-contents'
     return {
         ...commonConfig,
         /* config options for all phases except development here */
-        basePath,
         env: {
             ...commonConfig.env,
         },
