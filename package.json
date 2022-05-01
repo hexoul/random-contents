@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "vercel": "VERCEL=true yarn predeploy",
     "predeploy": "next build && next export && touch out/.nojekyll",
     "deploy": "gh-pages -d out -t true --dotfiles",
     "type-check": "tsc"
