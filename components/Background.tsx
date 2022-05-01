@@ -1,10 +1,10 @@
-import React from 'react'
-import Particles from 'react-tsparticles'
-import { loadFull } from 'tsparticles'
+import React from 'react';
+import Particles from 'react-tsparticles';
+import { loadFull } from 'tsparticles';
 
 type Props = {
   img?: string
-}
+};
 
 const Background = ({ img = 'https://particles.js.org/images/background3.jpg' }: Props) => {
   const particlesInit = async (main) => {
@@ -38,7 +38,7 @@ const Background = ({ img = 'https://particles.js.org/images/background3.jpg' }:
               }
             }
           },
-          "enable": true
+          "enable": false
         },
         "fullScreen": {
           "zIndex": -1
@@ -143,4 +143,4 @@ const Background = ({ img = 'https://particles.js.org/images/background3.jpg' }:
   );
 }
 
-export default Background
+export default Background;

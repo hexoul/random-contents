@@ -1,6 +1,6 @@
-import { Box } from '@chakra-ui/react'
-import React, { ReactNode } from 'react'
-import Head from 'next/head'
+import { Box } from '@chakra-ui/react';
+import React, { ReactNode } from 'react';
+import Head from 'next/head';
 
 type Props = {
   children?: ReactNode
@@ -18,4 +18,4 @@ const Layout = ({ children, title = '' }: Props) => (
   </Box>
 )
 
-export default Layout
+export default Layout;

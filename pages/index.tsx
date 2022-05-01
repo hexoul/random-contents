@@ -1,32 +1,35 @@
-import { Button, Flex, VStack } from '@chakra-ui/react'
-import { useCallback, useState } from 'react'
-import Background from '../components/Background'
-import Layout from '../components/Layout'
-import randomInt from '../utils'
+import { Button, Flex, Link, VStack } from '@chakra-ui/react';
+import { useCallback, useState } from 'react';
+import Background from '../components/Background';
+import Layout from '../components/Layout';
+import { Content } from '../interfaces';
+import randomInt from '../utils';
 
 const IndexPage = () => {
-  const [img, setImg] = useState('https://particles.js.org/images/background3.jpg');
-  const [isLoading, setIsLoading] = useState(false);
+  const [img, setImg] = useState<string>('https://particles.js.org/images/background3.jpg');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [content, setContent] = useState<Content>(null);
 
   const pickContent = useCallback(async () => {
     const idx = randomInt(1, 105335);
     const resp = await fetch(`api/contents?idx=${idx}`);
     if (resp.status !== 200) return null;
 
-    const { title, poster } = await resp.json();
-    if (!title || !poster) return null;
-
-    return { title, poster };
+    const pick: Content = await resp.json();
+    if (!pick.title || !pick.poster) return null;
+    pick.url = `https://m.kinolights.com/title/${idx}`;
+    return pick;
   }, []);
 
   const pickContentWithRetry = useCallback(async () => {
     setIsLoading(true);
     const interval = setInterval(async () => {
-      const { title, poster } = await pickContent();
-      if (!title || !poster) return;
+      const pick = await pickContent();
+      if (!pick) return;
 
       clearInterval(interval);
-      setImg(poster);
+      setContent(pick);
+      setImg(pick.poster);
       setIsLoading(false);
     }, 1000);
   }, [pickContent]);
@@ -43,6 +46,13 @@ const IndexPage = () => {
           >
             작품 무작위 추천 🍿
           </Button>
+          {content &&
+            <Link href={content.url} _focus={{ boxShadow: 'none' }} isExternal>
+              <Button size='lg' colorScheme='whatsapp'>
+                {`"${content.title}" 보러가기!`}
+              </Button>
+            </Link>
+          }
         </VStack>
       </Flex>
       <Background img={img} />
@@ -50,4 +60,4 @@ const IndexPage = () => {
   );
 }
 
-export default IndexPage
+export default IndexPage;
