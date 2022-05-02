@@ -1,6 +1,6 @@
 import { Button, Flex, Link, VStack } from '@chakra-ui/react';
 import { useCallback, useState } from 'react';
-import { filter, interval, map, mergeMap } from 'rxjs';
+import { debounceTime, filter, interval, map, mergeMap } from 'rxjs';
 import Background from '../components/Background';
 import Layout from '../components/Layout';
 import { Content } from '../interfaces';
@@ -27,6 +27,7 @@ const IndexPage = () => {
     const subscription = interval(1000).pipe(
       mergeMap(() => pickContent()),
       filter((pick) => !!pick),
+      debounceTime(300),
       map((pick) => {
         subscription.unsubscribe();
         setContent(pick);

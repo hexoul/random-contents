@@ -47,7 +47,7 @@ const Background = ({ img = 'https://particles.js.org/images/background3.jpg' })
           "events": {
             "onClick": {
               "enable": true,
-              "mode": "push"
+              "mode": "repulse"
             },
             "onHover": {
               "enable": true,
@@ -59,10 +59,10 @@ const Background = ({ img = 'https://particles.js.org/images/background3.jpg' })
           },
           "modes": {
             "bubble": {
-              "distance": 400,
+              "distance": 600,
               "duration": 2,
               "opacity": 1,
-              "size": 100,
+              "size": 120,
               "divs": {
                 "distance": 200,
                 "duration": 0.4,
@@ -94,6 +94,7 @@ const Background = ({ img = 'https://particles.js.org/images/background3.jpg' })
             "color": {
               "value": "#ffffff"
             },
+            "width": 3,
             "distance": 150,
             "enable": true
           },
@@ -117,7 +118,8 @@ const Background = ({ img = 'https://particles.js.org/images/background3.jpg' })
             "density": {
               "enable": true
             },
-            "value": 80
+            "value": 40,
+            "limit": 80
           },
           "opacity": {
             "animation": {
@@ -130,11 +132,11 @@ const Background = ({ img = 'https://particles.js.org/images/background3.jpg' })
               "enable": true
             },
             "value": {
-              "min": 1,
-              "max": 30
+              "min": 40,
+              "max": 70
             },
             "animation": {
-              "speed": 40,
+              "speed": 10,
               "minimumValue": 0.1
             }
           }
