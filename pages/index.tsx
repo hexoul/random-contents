@@ -1,5 +1,6 @@
 import { Button, Flex, Link, VStack } from '@chakra-ui/react';
 import { useCallback, useState } from 'react';
+import { filter, interval, map, mergeMap } from 'rxjs';
 import Background from '../components/Background';
 import Layout from '../components/Layout';
 import { Content } from '../interfaces';
@@ -23,15 +24,16 @@ const IndexPage = () => {
 
   const pickContentWithRetry = useCallback(async () => {
     setIsLoading(true);
-    const interval = setInterval(async () => {
-      const pick = await pickContent();
-      if (!pick) return;
-
-      clearInterval(interval);
-      setContent(pick);
-      setImg(pick.poster);
-      setIsLoading(false);
-    }, 1000);
+    const subscription = interval(1000).pipe(
+      mergeMap(() => pickContent()),
+      filter((pick) => !!pick),
+      map((pick) => {
+        subscription.unsubscribe();
+        setContent(pick);
+        setImg(pick.poster);
+        setIsLoading(false);
+      }),
+    ).subscribe();
   }, [pickContent]);
 
   return (
