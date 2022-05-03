@@ -15,8 +15,10 @@ const handler = async (req: VercelRequest, res: VercelResponse) => {
     const $ = load(html);
     const title = $(`h3[class='title-kr']`).text();
     const poster = $(`img[alt='${title}']`).attr('src');
+    const lightPercentWrap = $(`div[class='movie-light-wrap']`).find('div').text().trim();
+    const lightPercent = parseInt(lightPercentWrap, 10);
 
-    if (!title || !poster) {
+    if (!title || !poster || isNaN(lightPercent)) {
       res.status(500).json({})
       return;
     }

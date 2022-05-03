@@ -4,7 +4,7 @@ import { debounceTime, filter, interval, map, mergeMap } from 'rxjs';
 import Background from '../components/Background';
 import Layout from '../components/Layout';
 import { Content } from '../interfaces';
-import { fetchContent, randomInt } from '../utils';
+import { randomInt } from '../utils';
 
 const IndexPage = () => {
   const [img, setImg] = useState<string>('https://particles.js.org/images/background3.jpg');
@@ -18,13 +18,11 @@ const IndexPage = () => {
     if (resp.status !== 200) return null;
     const pick: Content = await resp.json();
     return pick;
-
-    // return fetchContent(idx);
   }, []);
 
   const pickContentWithRetry = useCallback(async () => {
     setIsLoading(true);
-    const subscription = interval(1000).pipe(
+    const subscription = interval(500).pipe(
       mergeMap(() => pickContent()),
       filter((pick) => !!pick),
       debounceTime(300),
