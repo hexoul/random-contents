@@ -1,5 +1,5 @@
 export type Content = {
-  title: string
-  poster: string
-  url: string
-}
+  title: string;
+  poster: string;
+  url: string;
+};
