@@ -15,7 +15,7 @@ const handler = async (req: VercelRequest, res: VercelResponse) => {
     const html = await resp.text();
     const $ = load(html);
     const title = $(`h3[class='title-kr']`).text();
-    const poster = $(`img[alt='thumbnail']`).attr("src");
+    const poster = $(`meta[property='og:image']`).attr("content");
     const lightPercentWrap = $(`div[class='movie-light-wrap']`)
       .find("div")
       .text()

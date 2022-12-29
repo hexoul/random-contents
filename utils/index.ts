@@ -8,7 +8,7 @@ const fetchContent = async (idx: number) => {
     const html = await resp.text();
     const $ = load(html);
     const title = $(`h3[class='title-kr']`).text();
-    const poster = $(`img[alt='thumbnail']`).attr("src");
+    const poster = $(`meta[property='og:image']`).attr("content");
 
     if (!title || !poster) return null;
     const content: Content = { title, poster, url };

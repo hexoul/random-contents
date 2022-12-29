@@ -24,7 +24,7 @@ const IndexPage = () => {
 
   const pickContentWithRetry = useCallback(async () => {
     setIsLoading(true);
-    const subscription = interval(5000)
+    const subscription = interval(1000)
       .pipe(
         mergeMap(() => pickContent()),
         filter((pick) => !!pick),
@@ -54,7 +54,7 @@ const IndexPage = () => {
           {content && (
             <Link href={content.url} _focus={{ boxShadow: "none" }} isExternal>
               <Button size="lg" colorScheme="whatsapp">
-                {`"${content.title}" 보러가기!`}
+                {`<${content.title}> 보러가기!`}
               </Button>
             </Link>
           )}
