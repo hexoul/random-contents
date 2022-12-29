@@ -14,7 +14,7 @@ const IndexPage = () => {
   const [content, setContent] = useState<Content>(null);
 
   const pickContent = useCallback(async () => {
-    const idx = randomInt(1, 105335);
+    const idx = randomInt(2, 117843);
 
     const resp = await fetch(`api?idx=${idx}`);
     if (resp.status !== 200) return null;
