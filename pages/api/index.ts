@@ -23,7 +23,7 @@ const handler = async (req: VercelRequest, res: VercelResponse) => {
     const lightPercent = parseInt(lightPercentWrap, 10);
 
     if (!title || !poster || isNaN(lightPercent)) {
-      res.status(500).json({});
+      res.status(200).json({});
       return;
     }
 

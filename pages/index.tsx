@@ -27,7 +27,7 @@ const IndexPage = () => {
     const subscription = interval(1000)
       .pipe(
         mergeMap(() => pickContent()),
-        filter((pick) => !!pick),
+        filter((pick) => !!pick.title),
         debounceTime(300),
         map((pick) => {
           subscription.unsubscribe();
