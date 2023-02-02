@@ -10,8 +10,8 @@ const handler = async (req: VercelRequest, res: VercelResponse) => {
   }
 
   try {
-    const utm = 'utm_source=kinolights&utm_medium=roulette&utm_campaign=allrandom';
-    const url = `https://m.kinolights.com/title/${idx}?${utm}`;
+    // const utm = 'utm_source=kinolights&utm_medium=roulette&utm_campaign=allrandom';
+    const url = `https://kinolights.com/title/${idx}`;
     const resp = await fetch(url);
     const html = await resp.text();
     const $ = load(html);
